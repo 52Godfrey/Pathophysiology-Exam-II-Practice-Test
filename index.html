@@ -171,7 +171,7 @@ function buildQ(ci,gIdx,q,type){
   const badge=type==='C'?'<span class="q-badge badge-clinical">Clinical scenario</span>':'<span class="q-badge badge-general">General knowledge</span>';
   const letters=['A','B','C','D'];
   const opts=q.opts.map((o,oi)=>`<button class="opt-btn" id="opt_${ci}_${gIdx}_${oi}" onclick="answer(${ci},${gIdx},${oi},${q.ans},${q.opts.length})"><span class="opt-letter">${letters[oi]}.</span><span>${o}</span></button>`).join('');
-  return `<div class="q-card" id="qc_${ci}_${gIdx}"><div class="q-meta">${badge}<span class="q-num">Q${gIdx+1}</span></div><div class="q-text">${q.q}</div><div class="options">${opts}</div><div class="explanation" id="exp_${ci}_${gIdx}">${q.exp}</div></div>`;
+  return `<div class="q-card" id="qc_${ci}_${gIdx}"><div class="q-meta">${badge}<span class="q-num">Q${gIdx+1}</span></div><div class="q-text">${q.q}</div><div class="options">${opts}</div><div class="explanation" id="exp_${ci}_${gIdx}">${q.exp.replace(/^Correct\s*—\s*([A-D]):\s*/, '<strong>Correct answer: $1.</strong> ')}</div></div>`;
 }
 
 function answer(ci,gIdx,chosen,correct,numOpts){
